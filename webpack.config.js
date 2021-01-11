@@ -1,7 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const {ModuleFederationPlugin} = require("webpack").container;
-const webpack = require('webpack');
 const dotenv = require('dotenv');
 
 module.exports = () => {
@@ -19,14 +18,20 @@ module.exports = () => {
             port: 3002,
         },
         output: {
-            publicPath: "http://localhost:3002/",
+            publicPath: "auto",
         },
         resolve: {
             extensions: [".tsx", ".ts", ".js"],
         },
         module: {
             rules: [
-
+                {
+                    test: /bootstrap\.tsx$/,
+                    loader: "bundle-loader",
+                    options: {
+                        lazy: true,
+                    },
+                },
                 {
                     test: /\.jsx?$/,
                     loader: "babel-loader",
@@ -64,24 +69,17 @@ module.exports = () => {
             ],
         },
         plugins: [
-           // new webpack.DefinePlugin({'process.env.PUBLIC_URL': JSON.stringify(env.PUBLIC_URL)}),
-            new HtmlWebpackPlugin({
-                template: "./public/index.html",
-            }),
             new ModuleFederationPlugin({
                 name: "micro-frontend",
-                library: { type: "var", name: "micro-frontend" },
                 remotes: {
-                    reactApp: "reactApp",
-                   // reactApp: "reactApp@http://localhost:3001/remoteEntry.js",
+                    reactApp: "reactApp@http://localhost:3001/remoteEntry.js",
                 },
-                shared: {
-                    ...["react", "react-dom"],
-                    react: {
-                        eager: true,
-                    }
-                }
+                shared: ["react", "react-dom"]
+
             }),
+            new HtmlWebpackPlugin({
+                template: "./public/index.html",
+            })
         ],
     };
 };
