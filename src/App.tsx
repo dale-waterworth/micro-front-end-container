@@ -12,7 +12,7 @@ function App() {
         </div>
 
       <React.Suspense fallback='Loading header'>
-        <Header>Hello this container adding data into the header from app 1</Header>
+        <Header>Data from the container injected into the <pre>'Header'</pre> component in micro-front-end-react project</Header>
       </React.Suspense>
     </div>
   );
