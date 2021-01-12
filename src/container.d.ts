@@ -5,3 +5,13 @@ declare module "reactApp/AReactComponent" {
 
     export default AReactComponent;
 }
+declare module "profile/DaleAngularComponent" {
+    //const AReactComponent: React.ComponentType;
+
+    export default DaleAngularComponent;
+}
+declare module "profile/ProfileModule" {
+    //const AReactComponent: React.ComponentType;
+
+    export default ProfileModule;
+}

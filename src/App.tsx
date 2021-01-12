@@ -5,27 +5,40 @@ import './App.css';
 
 const AReactComponent = React.lazy(() => import('reactApp/AReactComponent'));
 // @ts-ignore
-// const FlightsModule = React.lazy(() => import('mfe1/Module'));
+const DaleAngularComponent = React.lazy(() => import('profile/DaleAngularComponent'));
+// @ts-ignore
+   // .then(m => ({ default: m.DaleAngularComponent })));
+   /* .then(x => {
+        // @ts-ignore
+     //   return new x();
+        return x;
+    }));*/
+//const ProfileModule = React.lazy(() => import('profile/ProfileModule'));
 // .then(m => m.FlightsModule)
-
+// console.log('DaleAngularComponent', DaleAngularComponent);
+//console.log('ProfileModule', ProfileModule);
 const App = () => (
     <div className="App">
         <div>
             Micro-frontend
         </div>
 
-      <React.Suspense fallback='Loading React'>
-        <AReactComponent>Data from 'micro-front-end-container' injected into the
-            <pre>'AReactComponent'</pre>
-            component in 'micro-front-end-react' project
-        </AReactComponent>
-      </React.Suspense>
+        <React.Suspense fallback='Loading React'>
+            <AReactComponent>Data from 'micro-front-end-container' injected into the
+                <pre>'AReactComponent'</pre>
+                component in 'micro-front-end-react' project
+            </AReactComponent>
+        </React.Suspense>
 
-        {/* <React.Suspense fallback='Loading Angular'>
-        <FlightsModule></FlightsModule>
-      </React.Suspense>*/}
+        <React.Suspense fallback='Loading DaleAngularComponent'>
+            <DaleAngularComponent></DaleAngularComponent>
+        </React.Suspense>
+
+       {/* <React.Suspense fallback='Loading ProfileModule'>
+            <ProfileModule></ProfileModule>
+        </React.Suspense>*/}
     </div>
-  );
+);
 
 
 export default App;

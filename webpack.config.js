@@ -73,6 +73,7 @@ module.exports = () => {
                 name: "micro-frontend",
                 remotes: {
                     reactApp: "reactApp@http://localhost:3001/remoteEntry.js",
+                    profile: "profile@http://localhost:4201/remoteEntry.js",
                 },
                 shared: ["react", "react-dom"]
 
